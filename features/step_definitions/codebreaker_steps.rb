@@ -9,7 +9,7 @@ class Output
 end
 
 def tty_output
-  @output ||= Output.new
+  @tty_output ||= Output.new
 end
 
 
