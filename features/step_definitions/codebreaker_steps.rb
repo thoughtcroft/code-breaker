@@ -1,18 +1,4 @@
-class Output
-  def messages
-    @messages ||= []
-  end
-
-  def puts(message)
-    messages << message
-  end
-end
-
-def tty_output
-  @tty_output ||= Output.new
-end
-
-
+# -- starts game -- #
 Given(/^I am not yet playing$/) do
 end
 
@@ -25,6 +11,7 @@ Then(/^I should see "([^"]*)"$/) do |message|
   expect(tty_output.messages).to include(message)
 end
 
+# -- submits guess -- #
 Given(/^the secret code is "([^"]*)"$/) do |secret|
   @game = Codebreaker::Game.new(tty_output)
   @game.start(secret)
@@ -38,6 +25,7 @@ Then(/^the mark should be "([^"]*)"$/) do |mark|
   expect(tty_output.messages).to include(mark)
 end
 
+# -- breaks the code -- #
 Given(/^I am playing the game$/) do
 end
 
