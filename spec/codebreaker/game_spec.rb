@@ -16,10 +16,30 @@ module Codebreaker
     end
 
     describe '#guess' do
-      it "sends the mark to output" do
+      it 'sends the mark to output' do
         game.start('1234')
         expect(output).to receive(:puts).with('++++')
         game.guess('1234')
+      end
+
+      context 'when it takes 1 guess to break the code' do
+        it 'sends a singular guess success message' do
+          game.start('1234')
+          expect(output).to receive(:puts).once.with(anything())
+          expect(output).to receive(:puts).with('Congratulations, you broke the code in 1 guess!')
+          game.guess('1234')
+        end
+      end
+
+      context 'when it takes 3 guesses to break the code' do
+        it 'sends a plural guesses success message' do
+          game.start('1234')
+          expect(output).to receive(:puts).exactly(3).times.with(anything())
+          expect(output).to receive(:puts).with('Congratulations, you broke the code in 3 guesses!')
+          game.guess('1111')
+          game.guess('2222')
+          game.guess('1234')
+        end
       end
     end
   end

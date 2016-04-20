@@ -18,6 +18,8 @@ module Codebreaker
       total_match_count - exact_match_count
     end
 
+    private
+
     def total_match_count
       secret = @secret.split('')
       @guess.split('').inject(0) do |count, n|
