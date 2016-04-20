@@ -37,3 +37,19 @@ end
 Then(/^the mark should be "([^"]*)"$/) do |mark|
   expect(tty_output.messages).to include(mark)
 end
+
+Given(/^I am playing the game$/) do
+end
+
+Given(/^the secret code is '(\d+)'$/) do |secret|
+  @game = Codebreaker::Game.new(tty_output)
+  @game.start(secret)
+end
+
+When(/^I submit guess '(\d+)'$/) do |guess|
+  @game.guess(guess)
+end
+
+Then(/^I should also see "([^"]*)"$/) do |message|
+  expect(tty_output.messages).to include(message)
+end

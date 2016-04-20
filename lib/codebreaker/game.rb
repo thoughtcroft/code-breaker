@@ -13,6 +13,7 @@ module Codebreaker
     def guess(guess)
       marker = Marker.new(@secret, guess)
       @output.puts '+' * marker.exact_match_count + '-' * marker.number_match_count
+      @output.puts 'Congratulations, you broke the code!' if marker.guess_is_correct?
     end
   end
 end

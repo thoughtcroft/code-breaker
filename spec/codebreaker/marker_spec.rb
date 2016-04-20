@@ -66,5 +66,21 @@ module Codebreaker
         end
       end
     end
+
+    describe '#guess_is_correct?' do
+      context 'when the guess is incorrect' do
+        it 'returns false' do
+          marker = Marker.new('1234', '4321')
+          expect(marker.guess_is_correct?).not_to be
+        end
+      end
+
+      context 'when the guess is correct' do
+        it 'returns true' do
+          marker = Marker.new('1234', '1234')
+          expect(marker.guess_is_correct?).to be
+        end
+      end
+    end
   end
 end
